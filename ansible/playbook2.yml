@@ -1,0 +1,7 @@
+---
+- name: install defualt Apache Web Server
+  hosts: all                   #ubuntu2004 + other 
+  become: yes
+
+  roles:
+    - {role: deploy_apache_web, when: ansible_system == 'Linux' }

@@ -1,0 +1,22 @@
+---
+- name: ansible error control
+  hosts: all
+#  any_errors_fatal: yes        #люба помилка ломає виконання
+  become: yes
+
+  tasks:
+  - name: task 1
+    apt: name=treeeeeeeee state=latest
+    ignore_errors: yes           #ігнорує виконання
+
+  - name: task 2
+    shell: echo hello 123
+    register: results
+#    failed_when: results.rc == 0                        #видає помилку якщо знаходить відповідність
+#    failed_when: "'hello' in results.stdout"
+
+  - debug:
+      var: results
+
+  - name: task 3
+    shell: echo hellllllloooo

@@ -1,0 +1,35 @@
+---
+- name: zmini
+  hosts: all
+  become: yes
+
+  vars:
+    message1: ky
+    message2: test
+    secret  : asdoasdkaso
+
+  tasks:
+
+  - name: ky secret  var
+    debug:
+      var: secret
+
+  - debug:
+     msg: "secretne slovo: {{secret}}"
+
+  - debug:
+     msg: "vlasnik servera --> {{ owner }}<--"
+
+  - set_fact: full_message="{{ message1 }} {{ message2 }} from {{ owner }}"
+
+  - debug:
+      var: full_message
+
+  - debug:
+      var: ansible_uptime_seconds
+
+  - shell: uptime
+    register: results
+
+  - debug:
+      var: results.start

@@ -1,0 +1,21 @@
+---
+ -fruits:
+     -apple
+     -orange
+     -mango
+
+ -vegetables:
+     -carrots
+     -cucumbers
+
+ -list: cifra
+     2list: 123
+     3list: 456
+     4list: bishe10
+        -trash10
+        -trash20
+
+ -Andrii:
+       nick: lokill
+       position: student
+

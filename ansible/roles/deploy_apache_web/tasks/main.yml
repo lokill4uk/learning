@@ -1,0 +1,25 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for deploy_apache_web
+- name: Check and print linux version
+  debug: var=ansible_os_family
+
+- block:           # ============ |Debian|========== 
+
+    - name: install Apache WebServer Debian
+      apt:
+        name: apache2
+        update_cache: yes
+        state: latest
+
+    - name: enable mod_rewrite
+      apache2_module:
+        name: rewrite
+        state: present
+      notify:
+        - restart apache2
+      when: ansible_os_family == "Debian"
+
+    - name: install apache WebServer for RedHat
+      yum: name=httpd  state=latest
+  when: ansible_os_family == "RedHat"
